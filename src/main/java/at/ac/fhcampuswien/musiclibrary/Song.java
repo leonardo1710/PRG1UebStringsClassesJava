@@ -1,19 +1,17 @@
 package at.ac.fhcampuswien.musiclibrary;
 
 public class Song {
-    private String name, author, songwriter;
+    private String name, author;
     private double length;
-
 
     public Song(String name, String author, double length){
         this.name = name;
         this.author = author;
-        this.songwriter = "";
         this.length = length;
     }
 
     public double getLength(){
-        return length;
+        return this.length;
     }
 
     public String getName(){
@@ -21,19 +19,20 @@ public class Song {
     }
 
     public String getAuthorInitials(){
-        String[] author = this.author.split(" ");   // split if > 1 word
+        String[] authorNames = this.author.split(" ");   // split if > 1 word
 
         StringBuilder initials = new StringBuilder();
+
         //get first char from each word of author and append it to initials
-        for(int i = 0; i < author.length; i++){
-            initials.append(author[i].charAt(0));
+        for(int i = 0; i < authorNames.length; i++){
+            initials.append(authorNames[i].charAt(0));
         }
 
         return initials.toString();
     }
 
     public boolean hasSameName(Song songToCompare){
-        return songToCompare.name.equals(this.name);
+        return songToCompare.name.toUpperCase().equals(this.name.toUpperCase());
     }
 
     @Override

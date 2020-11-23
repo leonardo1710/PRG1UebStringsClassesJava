@@ -18,9 +18,11 @@ public class Album {
         this.songs = songs;
 
         double overallLength = 0;
+
         for(Song song: songs){
             overallLength += song.getLength();
         }
+
         this.length = overallLength;
     }
 
@@ -37,11 +39,12 @@ public class Album {
     }
 
     public boolean findSong(String name){
-        for(Song song: songs){
+        for(Song song: this.songs){
             if(song.getName().equals(name)){
                 return true;
             }
         }
+
         return false;
     }
 
@@ -56,7 +59,7 @@ public class Album {
 
     public Song[] filterSongsByKeyword(String keyword){
         int origLength = this.songs.length;
-        Song[] filteredSongs = new Song[origLength];
+        Song[] filteredSongs = new Song[origLength];    //max length == origLength
 
         for(int i = 0; i < this.songs.length; i++){
             if(this.songs[i].getName().contains(keyword)){
@@ -64,16 +67,16 @@ public class Album {
             }
         }
 
-        filteredSongs = removeNullsFromArray(filteredSongs);
+        filteredSongs = removeNullsFromArray(filteredSongs);    //remove all not used Array indezes
 
         return filteredSongs;
 
     }
 
     private Song[] removeNullsFromArray(Song[] songs){
-        songs = Arrays.stream(songs)
-                .filter(s -> (s != null))
-                .toArray(Song[]::new);
+        songs = Arrays.stream(songs)        // create stream from array to apply filter function
+                .filter(song -> (song != null))   // apply filter where each song is not null
+                .toArray(Song[]::new);      // create new array with filtered values
 
         return songs;
     }
@@ -87,8 +90,8 @@ public class Album {
 
     //replace all numbers with & signs in name
     public void replaceNumbersInName(){
-        this.name = this.name.replaceAll("[0-9]+", "&"); //use regular expressions
+        this.name = this.name.replaceAll("[0-9]", "&"); //use regular expressions; + means all
         // or
-        //this.name = this.name.replaceAll("\\d+", "&");  //+ means one or more times
+        //this.name = this.name.replaceAll("\\d", "&");  //+ means one or more times
     }
 }

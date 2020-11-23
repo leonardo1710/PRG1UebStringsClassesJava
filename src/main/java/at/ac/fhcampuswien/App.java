@@ -1,6 +1,7 @@
 package at.ac.fhcampuswien;
 
 import at.ac.fhcampuswien.musiclibrary.Album;
+import at.ac.fhcampuswien.musiclibrary.Single;
 import at.ac.fhcampuswien.musiclibrary.Song;
 
 public class App {
@@ -50,6 +51,14 @@ public class App {
         System.out.println("Replace Numbers in Strings: ");
         app.albums[2].replaceNumbersInName();
         System.out.println(app.albums[2].getName());
+
+
+        //create an object of class Single
+        Single single = new Single("Billie Jean",
+                new Song[]{
+                        new Song("Billie Jean", "Michael Jackson", 4.24),
+                        new Song("Billie Jean extended", "Michael Jackson", 7.23)
+                });
     }
 
     private void printSongs(Song[] songs){
@@ -67,6 +76,10 @@ public class App {
         Song[] songs = new Song[2];
 
         Song s1 = new Song("Feliz Navidad", "Jose Feliciano", 3.12);
+
+        System.out.println("###################################");
+        System.out.println(s1.toString());
+
         Song s2 = new Song("Last Christmas", "Wham!", 4.39);
 
         songs[0] = s1;
@@ -75,6 +88,7 @@ public class App {
         Album album = new Album("Christmas Special", songs);
 
         Album album2 = new Album("Best Of Rock No. 10");
+
         album2.setSongs(new Song[]{
                     new Song("Nothing Else Matters", "Metallica", 7.49),
                     new Song("Cradle of Love", "Billy Idol", 5.23)
